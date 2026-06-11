@@ -3,74 +3,44 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.loginsystem;
+
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class LoginSystemAppTest {
 
-    
-    // test message 1
-    
     @Test
-    public void testMessage1() {
-
-        LoginSystemApp app = new LoginSystemApp();
-
-        // test recipient number
-        boolean numberCheck =
-                app.checkCellphoneNumber("+27718693002");
-
-        assertTrue(numberCheck);
-
-        // test message length
-        String message =
-                "Hi Mike, can you join us for dinner tonight";
-
-        assertTrue(message.length() <= 250);
-
-        // send option
-        String sendMessage = "Send";
-
-        assertEquals("Send", sendMessage);
-
-        // auto generated values
-        String messageHash = "00:0:MIK";
-        String messageID = "1001";
-
-        assertNotNull(messageHash);
-        assertNotNull(messageID);
+    public void testUsernameValid() {
+        LoginSystemApp ls = new LoginSystemApp();
+        assertTrue(ls.checkUserName("k_b"));
     }
 
-    
-    // test message 2
-    
     @Test
-    public void testMessage2() {
+    public void testPasswordValid() {
+        LoginSystemApp ls = new LoginSystemApp();
+        assertTrue(ls.checkPasswordComplexity("Abc@1234"));
+    }
 
-        LoginSystemApp app = new LoginSystemApp();
+    @Test
+    public void testLoginFail() {
+        LoginSystemApp ls = new LoginSystemApp();
+        ls.registerUser("k_b", "Abc@1234", "John", "Doe", "+271234567890");
+        assertFalse(ls.loginUser("wrong", "wrong"));
+    }
 
-        // invalid recipient number
-        boolean numberCheck =
-                app.checkCellphoneNumber("08575975889");
+    @Test
+    public void testLoginSuccess() {
+        LoginSystemApp ls = new LoginSystemApp();
+        ls.registerUser("k_b", "Abc@1234", "John", "Doe", "+271234567890");
+        assertTrue(ls.loginUser("k_b", "Abc@1234"));
+    }
 
-        assertFalse(numberCheck);
+    @Test
+    public void testMessageSendRequiresLogin() {
+        Message.setLoginStatus(false);
 
-        // test message length
-        String message =
-                "Hi Keegan, did you receive the payment?";
+        Message msg = new Message("12", "+271234567890", "Hello");
 
-        assertTrue(message.length() <= 250);
-
-        // discard option
-        String sendMessage = "Discard";
-
-        assertEquals("Discard", sendMessage);
-
-        // auto generated values
-        String messageHash = "00:1:KEE";
-        String messageID = "1002";
-
-        assertNotNull(messageHash);
-        assertNotNull(messageID);
+        assertEquals("ERROR: Login required", msg.sentMessage(1));
     }
 }
