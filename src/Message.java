@@ -26,7 +26,7 @@ public class Message {
     public static void setLoginStatus(boolean status) {
         loggedIn = status;
     }
-
+//message method
     public Message(String messageID, String recipient, String message) {
         this.messageID = messageID;
         this.recipient = recipient;

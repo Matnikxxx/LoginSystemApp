@@ -8,29 +8,29 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class LoginSystemAppTest {
-
+//unit tests
     @Test
     public void testUsernameValid() {
-        LoginSystemApp ls = new LoginSystemApp();
+        LoginSystem ls = new LoginSystem();
         assertTrue(ls.checkUserName("k_b"));
     }
 
     @Test
     public void testPasswordValid() {
-        LoginSystemApp ls = new LoginSystemApp();
+        LoginSystem ls = new LoginSystem();
         assertTrue(ls.checkPasswordComplexity("Abc@1234"));
     }
 
     @Test
     public void testLoginFail() {
-        LoginSystemApp ls = new LoginSystemApp();
+        LoginSystem ls = new LoginSystem();
         ls.registerUser("k_b", "Abc@1234", "John", "Doe", "+271234567890");
         assertFalse(ls.loginUser("wrong", "wrong"));
     }
 
     @Test
     public void testLoginSuccess() {
-        LoginSystemApp ls = new LoginSystemApp();
+        LoginSystem ls = new LoginSystem();
         ls.registerUser("k_b", "Abc@1234", "John", "Doe", "+271234567890");
         assertTrue(ls.loginUser("k_b", "Abc@1234"));
     }

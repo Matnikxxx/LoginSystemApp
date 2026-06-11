@@ -5,7 +5,7 @@
     
 
 public class LoginSystem {
-
+//variables
     String username;
     String password;
     String firstName;
@@ -15,7 +15,7 @@ public class LoginSystem {
     public boolean checkUserName(String username) {
         return username.contains("_") && username.length() <= 5;
     }
-
+//password method
     public boolean checkPasswordComplexity(String password) {
 
         if (password.length() < 8) return false;
@@ -32,10 +32,11 @@ public class LoginSystem {
 
         return upper && number && special;
     }
-
+//cellphone method
     public boolean checkCellphoneNumber(String cellphone) {
         return cellphone.startsWith("+27") && cellphone.length() == 12;
     }
+    //registration method
 
     public String registerUser(String u, String p, String f, String l, String cell) {
 
@@ -51,7 +52,7 @@ public class LoginSystem {
 
         return "User successfully registered!";
     }
-
+//login method
     public boolean loginUser(String u, String p) {
         return u.equals(username) && p.equals(password);
     }

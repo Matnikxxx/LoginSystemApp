@@ -12,7 +12,7 @@ package com.mycompany.loginsystem;
 import java.util.Scanner;
 
 public class LoginSystemApp {
-
+//main method
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);

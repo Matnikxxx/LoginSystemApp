@@ -15,6 +15,7 @@ import java.io.IOException;
 public class MessageStore {
 
     public static void save(String data) {
+        //stores message
 
         try (FileWriter fw = new FileWriter("messages.json", true)) {
             fw.write(data + "\n");
